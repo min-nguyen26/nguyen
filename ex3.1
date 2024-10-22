@@ -1,0 +1,83 @@
+
+public class MyComplex {
+private double real;
+private double imag;
+public MyComplex() {
+real=0.0;
+imag=0.0;
+}
+public MyComplex(double real,double imag) {
+	this.real=real;
+	this.imag=imag;
+}
+public double getReal() {
+    return real;
+}
+public void setReal(double newReal) {
+	real=newReal;
+}
+public double getImag() {
+	return imag;
+}
+public void setImag(double newImag) {
+	imag=newImag;
+}
+public void setValue(double newReal,double newImag) {
+	real=newReal;
+	imag=newImag;
+}
+public String toString() { 
+	 if (imag >= 0) {
+         return real + " + " + imag + "i";
+     } else {
+         return real + " - " + Math.abs(imag) + "i";
+     }
+}
+public boolean isReal() {
+    return (imag==0);
+}
+public boolean isImaginary() {
+	return (real==0);
+}
+public boolean equals(double real, double imag) {
+	return(this.real==real && this.imag==imag);
+}
+public boolean equals(MyComplex another) {
+	return(this.real==another.real && this.imag==another.imag);
+}
+public double magnitude() {
+	return Math.sqrt(real*real+imag*imag);
+}
+public double argument() {
+	return Math.atan2(imag,real);
+}
+public MyComplex add(MyComplex right) {
+	return new MyComplex(this.real + right.real, this.imag + right.imag);
+}
+public MyComplex addNew(MyComplex right) {
+	return new MyComplex(real,imag);
+}
+public MyComplex subtract(MyComplex right) {
+	return new MyComplex(this.real - right.real, this.imag - right.imag);
+}
+public MyComplex subtractNew(MyComplex right) {
+	return new MyComplex(real,imag);
+}
+public MyComplex multiply(MyComplex right) {
+	double realPart = this.real * right.real - this.imag * right.imag;
+    double imagPart = this.real * right.imag + this.imag * right.real;
+    return new MyComplex(realPart, imagPart);
+}
+public MyComplex divide(MyComplex right) {
+	double denominator = right.real * right.real + right.imag * right.imag;
+    if (denominator == 0) {
+        throw new ArithmeticException("Cannot divide by zero complex number.");
+}
+    double realPart = (this.real * right.real + this.imag * right.imag) / denominator;
+    double imagPart = (this.imag * right.real - this.real * right.imag) / denominator;
+    return new MyComplex(realPart, imagPart);
+}
+public MyComplex conjugate() {
+	return this;
+}
+}

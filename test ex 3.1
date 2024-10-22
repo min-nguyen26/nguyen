@@ -1,0 +1,46 @@
+
+import java.util.Scanner;
+
+public class MyComplexApp {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to MyComplexApp!");
+
+        // Get two complex numbers from the user
+        MyComplex complex1 = getComplexNumber(scanner, "the first complex number");
+        MyComplex complex2 = getComplexNumber(scanner, "the second complex number");
+
+        // Display the complex numbers
+        System.out.println("\nFirst complex number: " + complex1);
+        System.out.println("Second complex number: " + complex2);
+
+        // Check for real and imaginary
+        System.out.println("First number is real: " + complex1.isReal());
+        System.out.println("First number is imaginary: " + complex1.isImaginary());
+        System.out.println("Second number is real: " + complex2.isReal());
+        System.out.println("Second number is imaginary: " + complex2.isImaginary());
+        System.out.println("Both numbers are equal: " + complex1.equals(complex2));
+
+        // Perform arithmetic operations
+        System.out.println("\nArithmetic operations:");
+        System.out.println("Addition: " + complex1.add(complex2));
+        System.out.println("Subtraction: " + complex1.subtract(complex2));
+        System.out.println("Multiplication: " + complex1.multiply(complex2));
+        try {
+            System.out.println("Division: " + complex1.divide(complex2));
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
+
+        scanner.close();
+    }
+
+    private static MyComplex getComplexNumber(Scanner scanner, String prompt) {
+        System.out.print("Enter the real part of " + prompt + ": ");
+        double realPart = scanner.nextDouble();
+        System.out.print("Enter the imaginary part of " + prompt + ": ");
+        double imagPart = scanner.nextDouble();
+        return new MyComplex(realPart, imagPart);
+    }
+}
